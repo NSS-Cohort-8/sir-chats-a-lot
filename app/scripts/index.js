@@ -15,15 +15,9 @@ $('form').submit(function (e) {
   e.preventDefault();
 });
 
-fb.once('value', function (snap) {
-  var messages = snap.val();
-
-  _.forEach(messages, function (m) {
-    addChatMessage(m.name, m.text);
-  });
-});
-
 fb.on('child_added', function (snap) {
+  // fires onload once for every object in the collection,
+  // and again for additional children being added
   var message = snap.val();
 
   addChatMessage(message.name, message.text);
